@@ -3,9 +3,6 @@ title: 'USDA Nutrients Analysis'
 author: "Rozita Abdoli"
 output: rmarkdown::github_document
 ---
-<center> <h1> USDA Nutrients Analysis </h1> </center>
-<center>  <h3> Rozita Abdoli </h2> </center>
----
 
 #### Read the files.
 ```{r}
@@ -157,14 +154,14 @@ anova(lr)
 ```
 
 #### New Product: Protein=0.1, TotalFat=37, Carbohydrate=400, Sodium=440, Cholesterol=75, Sugar=NA, Calcium=35, Iron=NA, Potassium=35, VitaminC=10,	VitaminE=NA, VitaminD=NA. 
-Based on the model, what is the predicted value for Calories?
+#### Based on the model, what is the predicted value for Calories?
 ```{r}
 predicted_calorie <-predict(lr, newdata = data.frame(Protein=0.1, TotalFat=37,Carbohydrate=400, Sodium=440, Cholesterol=75))
 sprintf("%s is the predicted calories.", round(predicted_calorie, digits=3))
 ```
 
 #### If the Sodium amount increases from 440 to 44440 (10000% increase), Calories only increases by 100.8%. In other words, the ratio of new over old Calories is 1.008 which is very close to the ratio of 1 showing that Calories didn't change much. 
-This is expected since the Sodium independent variable is the least significant, as previously shown. Sodium has very little effect on the value of the dependent variable Calories (also the multiple linear regression model's coefficient for Sodium shown above is very small: 0.0003383). 
+#### This is expected since the Sodium independent variable is the least significant, as previously shown. Sodium has very little effect on the value of the dependent variable Calories (also the multiple linear regression model's coefficient for Sodium shown above is very small: 0.0003383). 
 ```{r}
 predicted_calorie_2 <-predict(lr, newdata = data.frame(Protein=0.1, TotalFat=37,Carbohydrate=400, Sodium=44440, Cholesterol=75))
 calorie_change <- (predicted_calorie_2/predicted_calorie)*100
